@@ -104,6 +104,10 @@ from (
                   `other-amount`,
                   `total-amount`
      ) fin
+     
+ inner join (select distinct settlements from settlement_join_data
+  where   currency='MXN')
+    st on st.settlements=fin.settlement_id    
 
 group by month,
          date_time,
